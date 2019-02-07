@@ -1,0 +1,36 @@
+﻿<Window x:Class="MultifunctionalDictionary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultifunctionalDictionary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Margin="0">
+            <TabControl x:Name="tabControl" Margin="0" TabStripPlacement="Bottom">
+                <TabItem Header="Home">
+                    <Grid Background="#FFE5E5E5">
+                        <Label x:Name="label" Content="Multi-functional Dictionary" HorizontalAlignment="Left" Margin="287,10,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="20"/>
+                        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="BookSelector_SelectionChanged"/>
+                        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="581,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Background="White"/>
+                        <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="721,16,0,0" VerticalAlignment="Top" Width="56"/>
+                        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="212,64,0,0" VerticalAlignment="Top" Width="166"/>
+                        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="418,64,0,0" VerticalAlignment="Top" Width="166"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Search">
+                    <Grid Background="#FFE5E5E5">
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="140,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="369"/>
+                        <Button x:Name="SearchButton" Content="Advanced Search" HorizontalAlignment="Left" Margin="545,38,0,0" VerticalAlignment="Top" Width="120"/>
+                        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="198" Margin="45,155,0,0" VerticalAlignment="Top" Width="667"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Import">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+    </Grid>
+</Window>
