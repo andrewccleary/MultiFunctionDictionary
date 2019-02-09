@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MultifunctionalDictionary.Helper;
 
 namespace MultifunctionalDictionary
 {
@@ -35,6 +36,9 @@ namespace MultifunctionalDictionary
             verseSelector.IsEditable = true;
             verseSelector.IsReadOnly = true;
             verseSelector.Text = "Verse";
+
+            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            //dh.AcquireConnection();
         }
 
         private void BookSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
