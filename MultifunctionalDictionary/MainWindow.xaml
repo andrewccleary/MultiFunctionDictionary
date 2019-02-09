@@ -5,18 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Multi-functional Dictionary" Height="450" Width="800"
+        Icon="bibleIcon.ico">
     <Grid>
         <Grid Margin="0">
             <TabControl x:Name="tabControl" Margin="0" TabStripPlacement="Bottom">
                 <TabItem Header="Home">
                     <Grid Background="#FFE5E5E5">
-                        <Label x:Name="label" Content="Multi-functional Dictionary" HorizontalAlignment="Left" Margin="287,10,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="20"/>
-                        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="BookSelector_SelectionChanged"/>
-                        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="581,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Background="White"/>
-                        <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="721,16,0,0" VerticalAlignment="Top" Width="56"/>
-                        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="212,64,0,0" VerticalAlignment="Top" Width="166"/>
-                        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="418,64,0,0" VerticalAlignment="Top" Width="166"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="389*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="label" Content="Multi-functional Dictionary" Margin="228,11,263,0" FontFamily="Old English Text MT" FontSize="20" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="16,64,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="BookSelector_SelectionChanged" Grid.Column="1"/>
+                        <Button x:Name="button" Content="Search" HorizontalAlignment="Right" Margin="0,20,10,0" VerticalAlignment="Top" Width="56" Grid.Column="1"/>
+                        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="204,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1"/>
+                        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="410,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1"/>
+                        <Grid HorizontalAlignment="Left" Height="100" Margin="38.766,213,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                        <TextBox x:Name="homeSearch" HorizontalAlignment="Right" Height="23" Margin="0,20,91,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Search">
