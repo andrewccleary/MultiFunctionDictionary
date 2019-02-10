@@ -31,19 +31,62 @@ namespace MultifunctionalDictionary
 
             chapterSelector.IsEditable = true;
             chapterSelector.IsReadOnly = true;
+            chapterSelector.IsEnabled = false;
             chapterSelector.Text = "Chapter";
 
             verseSelector.IsEditable = true;
             verseSelector.IsReadOnly = true;
+            verseSelector.IsEnabled = false;
             verseSelector.Text = "Verse";
 
             DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
-            //dh.AcquireConnection();
+            dh.AcquireConnection();
+
+            Dictionary<int, String> booksList = dh.GetBooksList();
+
+            foreach(KeyValuePair<int, String> book in booksList)
+            {
+                bookSelector.Items.Insert(book.Key-1, book.Value);
+            }
         }
 
         private void BookSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            dh.AcquireConnection();
 
+            List<int> chapters = dh.GetChapterList(bookSelector.SelectedIndex+1);
+
+            chapterSelector.Items.Clear();
+
+            foreach(int chapter in chapters)
+            {
+                chapterSelector.Items.Insert(chapter - 1, chapter);
+            }
+
+            chapterSelector.Text = "Chapter";
+            chapterSelector.IsEnabled = true;
+
+            verseSelector.Text = "Verse";
+            verseSelector.IsEnabled = false;
+        }
+
+        private void ChapterSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            dh.AcquireConnection();
+
+            List<int> verses = dh.GetVerseList(bookSelector.SelectedIndex+1, chapterSelector.SelectedIndex+1);
+
+            verseSelector.Items.Clear();
+
+            foreach (int verse in verses)
+            {
+                verseSelector.Items.Insert(verse - 1, verse);
+            }
+
+            verseSelector.Text = "Verse";
+            verseSelector.IsEnabled = true;
         }
     }
 }
