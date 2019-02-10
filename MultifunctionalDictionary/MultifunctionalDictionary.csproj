@@ -76,12 +76,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\DatabaseHelper.cs" />
+    <Compile Include="Helper\VerseHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Translation.cs" />
+    <Compile Include="Models\Verse.cs" />
+    <Compile Include="Models\WordMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,8 +115,6 @@
   <ItemGroup>
     <Resource Include="bibleIcon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

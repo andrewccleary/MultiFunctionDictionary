@@ -88,5 +88,13 @@ namespace MultifunctionalDictionary
             verseSelector.Text = "Verse";
             verseSelector.IsEnabled = true;
         }
+
+        private void GoButton_Click(object sender, RoutedEventArgs e)
+        {
+            int chapter = chapterSelector.SelectedIndex + 1;
+            int verseNum = verseSelector.SelectedIndex + 1;
+
+            //TODO: Need logic to determine which verse selection method to use
+        }
     }
 }
