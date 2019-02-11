@@ -1,4 +1,4 @@
-# Multi-FunctionDictionary
+# MultiFunctionalDictionary
 
 **Developed By:** Andrew Cleary, Celine Malawi, Dylan Mitchell, Patrick Chuong
 
