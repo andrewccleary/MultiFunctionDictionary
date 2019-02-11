@@ -8,9 +8,9 @@ namespace MultifunctionalDictionary.Models
 {
     public class WordMap
     {
-        String word;
-        int verseId;
-        int referenceNum;
+        private String word;
+        private int verseId;
+        private int referenceNum;
 
         public WordMap(String word, int verseId, int referenceNum)
         {
@@ -18,5 +18,9 @@ namespace MultifunctionalDictionary.Models
             this.verseId = verseId;
             this.referenceNum = referenceNum;
         }
+
+        public String GetWord(){ return this.word; }
+        public int GetVerseId(){ return this.verseId; }
+        public int GetReferenceNum() { return this.referenceNum; }
     }
 }

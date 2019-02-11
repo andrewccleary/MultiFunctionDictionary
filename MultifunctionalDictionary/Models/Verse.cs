@@ -9,15 +9,15 @@ namespace MultifunctionalDictionary.Models
 {
     public class Verse
     {
-        int verseId;
-        String language;
-        int testamentNum;
-        String testament;
-        int bookNum;
-        String book;
-        int chapter;
-        int verseNum;
-        String verse;
+        private int verseId;
+        private String language;
+        private int testamentNum;
+        private String testament;
+        private int bookNum;
+        private String book;
+        private int chapter;
+        private int verseNum;
+        private String verse;
 
         public Verse(int verseId, String language, int testamentNum, String testament, int bookNum,
             String book, int chapter, int verseNum, String verse)
@@ -32,6 +32,15 @@ namespace MultifunctionalDictionary.Models
             this.verseNum = verseNum;
             this.verse = verse;
         }
-        
+
+        public int GetVerseId(){ return this.verseId; }
+        public String GetLanguage() { return this.language; }
+        public int GetTestamentNum() { return this.testamentNum; }
+        public String GetTestament() { return this.testament; }
+        public int GetBookNum() { return this.bookNum; }
+        public String GetBook() { return this.book; }
+        public int GetChapter() { return this.chapter; }
+        public int GetVerseNum() { return this.verseNum; }
+        public String GetVerse() { return this.verse; }
     }
 }

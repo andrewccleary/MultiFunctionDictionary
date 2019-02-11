@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MultifunctionalDictionary.Helper;
+using MultifunctionalDictionary.Models;
 
 namespace MultifunctionalDictionary
 {
@@ -21,6 +22,8 @@ namespace MultifunctionalDictionary
     /// </summary>
     public partial class MainWindow : Window
     {
+        DatabaseHelper dh;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,10 +42,14 @@ namespace MultifunctionalDictionary
             verseSelector.IsEnabled = false;
             verseSelector.Text = "Verse";
 
-            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
-            dh.AcquireConnection();
+            goButton.IsEnabled = false;
+            clearButton.IsEnabled = false;
 
-            Dictionary<int, String> booksList = dh.GetBooksList();
+            dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            dh.AcquireConnection();
+            SelectionHelper sh = new SelectionHelper(dh.GetConnection());
+
+            Dictionary<int, String> booksList = sh.GetBooksList();
 
             foreach(KeyValuePair<int, String> book in booksList)
             {
@@ -52,12 +59,12 @@ namespace MultifunctionalDictionary
 
         private void BookSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
-            dh.AcquireConnection();
-
-            List<int> chapters = dh.GetChapterList(bookSelector.SelectedIndex+1);
+            SelectionHelper sh = new SelectionHelper(dh.GetConnection());
+            List<int> chapters = sh.GetChapterList(bookSelector.SelectedIndex+1);
 
             chapterSelector.Items.Clear();
+            goButton.IsEnabled = true;
+            clearButton.IsEnabled = true;
 
             foreach(int chapter in chapters)
             {
@@ -73,10 +80,8 @@ namespace MultifunctionalDictionary
 
         private void ChapterSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DatabaseHelper dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
-            dh.AcquireConnection();
-
-            List<int> verses = dh.GetVerseList(bookSelector.SelectedIndex+1, chapterSelector.SelectedIndex+1);
+            SelectionHelper sh = new SelectionHelper(dh.GetConnection());
+            List<int> verses = sh.GetVerseList(bookSelector.SelectedIndex+1, chapterSelector.SelectedIndex+1);
 
             verseSelector.Items.Clear();
 
@@ -94,7 +99,37 @@ namespace MultifunctionalDictionary
             int chapter = chapterSelector.SelectedIndex + 1;
             int verseNum = verseSelector.SelectedIndex + 1;
 
-            //TODO: Need logic to determine which verse selection method to use
+            VerseHelper vh = new VerseHelper(dh.GetConnection());
+            List<Verse> verses = new List<Verse>();
+
+            if (bookSelector.Text != "Book" && chapterSelector.Text == "Chapter")
+            {
+                verses = vh.GetVersesByBook(bookSelector.SelectedIndex + 1);
+            }
+            else if(bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text == "Verse")
+            {
+                verses = vh.GetVersesByBookChapter(bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1);
+            }
+            else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text != "Verse")
+            {
+                verses = vh.GetVerseByBookChapterVerse(bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1, verseSelector.SelectedIndex + 1);
+            }
+
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            verseSelector.Items.Clear();
+            chapterSelector.Items.Clear();
+
+            bookSelector.Text = "Book";
+            chapterSelector.Text = "Chapter";
+            verseSelector.Text = "Verse";
+
+            chapterSelector.IsEnabled = false;
+            verseSelector.IsEnabled = false;
+            goButton.IsEnabled = false;
+            clearButton.IsEnabled = false;
         }
     }
 }
