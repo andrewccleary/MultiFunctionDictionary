@@ -57,6 +57,10 @@
                         <TextBox x:Name="homeSearchBox" HorizontalAlignment="Right" Margin="0,20,91,0" TextWrapping="Wrap" Grid.Column="1" MinWidth="140" Width="133" RenderTransformOrigin="-0.356,0.526" Height="23" VerticalAlignment="Top"/>
                         <Button x:Name="goButton" Content="Go" Grid.Column="1" HorizontalAlignment="Left" Margin="588,66,0,0" VerticalAlignment="Top" Width="75" Click="GoButton_Click" Height="20" Background="White"/>
                         <Button x:Name="clearButton" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="680,66,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Height="20" Background="White"/>
+                        <ScrollViewer Grid.ColumnSpan="2" Margin="75,111,75,54">
+                            <TextBlock x:Name="verseBlock" Grid.ColumnSpan="2" TextWrapping="Wrap" Background="White"/>
+                        </ScrollViewer>
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Search">
