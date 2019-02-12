@@ -44,7 +44,7 @@ namespace MultifunctionalDictionary
 
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
-
+            
             dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
             dh.AcquireConnection();
             SelectionHelper sh = new SelectionHelper(dh.GetConnection());

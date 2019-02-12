@@ -11,12 +11,14 @@
         <Grid Margin="0">
             <TabControl x:Name="tabControl" Margin="0" TabStripPlacement="Bottom">
                 <TabItem Header="Home">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FF711E13">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="389*"/>
+                            <ColumnDefinition Width="0*"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label x:Name="label" Content="Multi-functional Dictionary" Margin="228,11,263,0" FontFamily="Old English Text MT" FontSize="20" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle Grid.ColumnSpan="2" Fill="#FF711E13" Stroke="Black" Margin="0"/>
+                        <Rectangle Grid.ColumnSpan="2" Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
+                        <Label x:Name="label" Content="Multi-functional Dictionary" Margin="260,11,284,0" FontFamily="Old English Text MT" FontSize="20" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="32" Width="242" Background="#FF711E13" Foreground="White">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -26,25 +28,84 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="16,64,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="BookSelector_SelectionChanged" Grid.Column="1"/>
-                        <Button x:Name="button" Content="Search" HorizontalAlignment="Right" Margin="0,20,10,0" VerticalAlignment="Top" Width="56" Grid.Column="1"/>
-                        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="204,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1" SelectionChanged="ChapterSelector_SelectionChanged"/>
-                        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="410,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1"/>
-                        <Grid HorizontalAlignment="Left" Height="100" Margin="38.766,213,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
-                        <TextBox x:Name="homeSearchBox" HorizontalAlignment="Right" Height="23" Margin="0,20,91,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Grid.Column="1"/>
-                        <Button x:Name="goButton" Content="Go" Grid.Column="1" HorizontalAlignment="Left" Margin="600,66,0,0" VerticalAlignment="Top" Width="75" Click="GoButton_Click"/>
-                        <Button x:Name="clearButton" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="693,66,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click"/>
+                        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="39,64,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="BookSelector_SelectionChanged" Grid.Column="1" Height="22">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Button x:Name="button" Content="Search" Margin="0,20,16,0" VerticalAlignment="Top" Grid.Column="1" Height="20" Background="White" HorizontalAlignment="Right" Width="56"/>
+                        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="220,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1" SelectionChanged="ChapterSelector_SelectionChanged" Height="22">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="403,64,0,0" VerticalAlignment="Top" Width="166" Grid.Column="1" Height="22" BorderBrush="White">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                        </ComboBox>
+                        <Grid HorizontalAlignment="Left" Height="100" Margin="39,213,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                        <TextBox x:Name="homeSearchBox" HorizontalAlignment="Right" Margin="0,20,91,0" TextWrapping="Wrap" Grid.Column="1" MinWidth="140" Width="133" RenderTransformOrigin="-0.356,0.526" Height="23" VerticalAlignment="Top"/>
+                        <Button x:Name="goButton" Content="Go" Grid.Column="1" HorizontalAlignment="Left" Margin="588,66,0,0" VerticalAlignment="Top" Width="75" Click="GoButton_Click" Height="20" Background="White"/>
+                        <Button x:Name="clearButton" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="680,66,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Height="20" Background="White"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Search">
-                    <Grid Background="#FFE5E5E5">
-                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="140,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="369"/>
-                        <Button x:Name="SearchButton" Content="Advanced Search" HorizontalAlignment="Left" Margin="545,38,0,0" VerticalAlignment="Top" Width="120"/>
-                        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="198" Margin="45,155,0,0" VerticalAlignment="Top" Width="667"/>
+                    <Grid Background="#FF711E13">
+                        <Rectangle Grid.ColumnSpan="2" Fill="#FF711E13" Stroke="Black" Margin="0"/>
+                        <Rectangle Grid.ColumnSpan="2" Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
+                        <TextBox x:Name="advancedSearch" Margin="201,75,216,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+                        <Button x:Name="SearchButton" Content="Advanced Search" Margin="0,75,64,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" Background="White"/>
+                        <DataGrid x:Name="dataGrid" Margin="55,129,64,64" Background="White"/>
+                        <Label x:Name="label_Copy" Content="Multi-functional Dictionary" Margin="260,11,284,0" FontFamily="Old English Text MT" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="32" Width="242" Background="#FF711E13" Foreground="White">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Import">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FF711E13">
+                        <Rectangle Fill="#FF711E13" Stroke="Black" Margin="0"/>
+                        <Rectangle Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
+                        <Label x:Name="label_Copy1" Content="Multi-functional Dictionary" Margin="260,11,284,0" FontFamily="Old English Text MT" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="32" Width="242" Background="#FF711E13" Foreground="White">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <TextBox x:Name="textBox" Height="22" Margin="388,90,250,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148"/>
+                        <TextBox x:Name="textBox_Copy" Height="22" Margin="388,142,248,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150"/>
+                        <TextBox x:Name="textBox_Copy1" Height="22" Margin="388,192,250,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148"/>
+                        <TextBox x:Name="textBox_Copy2" Margin="388,238,249,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Top" HorizontalAlignment="Center" Width="149"/>
+                        <Label x:Name="label1" Content="Reference Number" Height="24" Margin="230,90,420,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <Label x:Name="label1_Copy" Content="Hebrew Word" Height="24" Margin="230,140,420,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <Label x:Name="label1_Copy1" Content="Hebrew Translation" Height="24" Margin="230,190,420,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <Label x:Name="label1_Copy2" Content="Pronunciation" Height="24" Margin="230,238,420,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <Label x:Name="label1_Copy3" Content="Definition" Height="24" Margin="230,278,420,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="textBox_Copy3" Height="22" Margin="390,278,248,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148"/>
+                        <Button x:Name="importButton" Content="Add Translation" Height="26" Margin="314,326,326,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Center" Width="146" RenderTransformOrigin="1.341,0.621"/>
+                    </Grid>
+
+
                 </TabItem>
             </TabControl>
         </Grid>
