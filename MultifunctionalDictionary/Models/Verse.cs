@@ -17,7 +17,7 @@ namespace MultifunctionalDictionary.Models
         private String book;
         private int chapter;
         private int verseNum;
-        public String verse;
+        private String verse;
 
         public Verse(int verseId, String language, int testamentNum, String testament, int bookNum,
             String book, int chapter, int verseNum, String verse)

@@ -96,7 +96,8 @@ namespace MultifunctionalDictionary
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Go!");
+            verseBlock.Text = " ";
+
             int chapter = chapterSelector.SelectedIndex + 1;
             int verseNum = verseSelector.SelectedIndex + 1;
 
@@ -116,10 +117,11 @@ namespace MultifunctionalDictionary
                 verses = vh.GetVerseByBookChapterVerse(bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1, verseSelector.SelectedIndex + 1);
             }
 
-            for(int i = 0; i < verses.Count; i++)
+            foreach (Verse verse in verses)
             {
-                verseBlock.Text += verses[i].verse;
+                verseBlock.Text += verse.GetVerseId().ToString();
                 verseBlock.Text += " ";
+                verseBlock.Text += verse.GetVerse();
             }
             
         }
