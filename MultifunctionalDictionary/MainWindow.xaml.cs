@@ -119,9 +119,10 @@ namespace MultifunctionalDictionary
 
             foreach (Verse verse in verses)
             {
-                verseBlock.Text += verse.GetVerseId().ToString();
+                verseBlock.Text += verse.GetVerseNum().ToString();
                 verseBlock.Text += " ";
                 verseBlock.Text += verse.GetVerse();
+                verseBlock.Text += " ";
             }
             
         }
