@@ -8,7 +8,11 @@
         Title="Multi-functional Dictionary" Height="450" Width="800"
         Icon="bibleIcon.ico">
     <Grid>
-        <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="145*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0" TabStripPlacement="Bottom">
                 <TabItem Header="Home">
                     <Grid Background="#FF711E13">
@@ -60,6 +64,7 @@
                         <ScrollViewer Grid.ColumnSpan="2" Margin="75,111,75,54">
                             <TextBlock x:Name="verseBlock" Grid.ColumnSpan="2" TextWrapping="Wrap" Background="White"/>
                         </ScrollViewer>
+                        <Slider x:Name="FontSlider" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="75,0,0,31" RenderTransformOrigin="3.087,0.154" Width="173" Minimum="12" Maximum="25" Height="18" VerticalAlignment="Bottom" SmallChange="1" ValueChanged="FontSlider_ValueChanged"/>
 
                     </Grid>
                 </TabItem>

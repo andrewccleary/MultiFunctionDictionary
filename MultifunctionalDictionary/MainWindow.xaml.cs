@@ -44,7 +44,8 @@ namespace MultifunctionalDictionary
 
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
-            
+            FontSlider.IsEnabled = false;
+
             dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
             dh.AcquireConnection();
             SelectionHelper sh = new SelectionHelper(dh.GetConnection());
@@ -55,6 +56,7 @@ namespace MultifunctionalDictionary
             {
                 bookSelector.Items.Insert(book.Key-1, book.Value);
             }
+
         }
 
         private void BookSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,6 +99,7 @@ namespace MultifunctionalDictionary
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
             verseBlock.Text = " ";
+            FontSlider.IsEnabled = true;
 
             int chapter = chapterSelector.SelectedIndex + 1;
             int verseNum = verseSelector.SelectedIndex + 1;
@@ -129,6 +132,7 @@ namespace MultifunctionalDictionary
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            FontSlider.IsEnabled = false;
             verseSelector.Items.Clear();
             chapterSelector.Items.Clear();
 
@@ -142,6 +146,11 @@ namespace MultifunctionalDictionary
             verseSelector.IsEnabled = false;
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
+        }
+
+        private void FontSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            verseBlock.FontSize = FontSlider.Value;
         }
     }
 }
