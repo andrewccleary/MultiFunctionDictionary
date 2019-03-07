@@ -223,15 +223,56 @@ namespace MultifunctionalDictionary
 
                 Translation translation = new Translation(referenceNumber, hebrewWord, hebrewTranslation, pronunciation, definition);
 
-                th.insertTranslation(translation);
+                int insertFlag = th.insertTranslation(translation);
 
-                referenceNumberEntry.Text = "";
-                hebrewWordEntry.Text = "";
-                hebrewTranslationEntry.Text = "";
-                pronunciationEntry.Text = "";
-                definitionEntry.Text = "";
+                //If insert succeded
+                if (insertFlag == 0)
+                {
+                    referenceNumberEntry.Text = "";
+                    hebrewWordEntry.Text = "";
+                    hebrewTranslationEntry.Text = "";
+                    pronunciationEntry.Text = "";
+                    definitionEntry.Text = "";
+                } else if(insertFlag == 1) //If duplicate entry show update button
+                {
+                    referenceNumberEntryError.Text = "Duplicate Reference Number.";
+                    updateButton.Visibility = Visibility.Visible;
+                    updateButton.IsEnabled = true;
+                }
 
             }
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+            TranslationHelper th = new TranslationHelper(dh.GetConnection());
+
+            int referenceNumber = Convert.ToInt32(referenceNumberEntry.Text);
+            String hebrewWord = hebrewWordEntry.Text;
+            String hebrewTranslation = hebrewTranslationEntry.Text;
+            String pronunciation = pronunciationEntry.Text;
+            String definition = definitionEntry.Text;
+
+            Translation translation = new Translation(referenceNumber, hebrewWord, hebrewTranslation, pronunciation, definition);
+            th.updateTranslation(translation);
+
+            referenceNumberEntryError.Text = "";
+            referenceNumberEntry.Text = "";
+            hebrewWordEntry.Text = "";
+            hebrewTranslationEntry.Text = "";
+            pronunciationEntry.Text = "";
+            definitionEntry.Text = "";
+
+            updateButton.Visibility = Visibility.Hidden;
+            updateButton.IsEnabled = false;
+
+        }
+
+        private void referenceNumberTextChangedEventHandler(object sender, TextChangedEventArgs args)
+        {
+            referenceNumberEntryError.Text = "";
+            updateButton.Visibility = Visibility.Hidden;
+            updateButton.IsEnabled = false;
         }
     }
 }

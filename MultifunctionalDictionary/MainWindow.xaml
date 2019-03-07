@@ -105,22 +105,23 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <TextBox x:Name="referenceNumberEntry" Height="22" Margin="388,90,250,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148" PreviewTextInput="NumberValidationTextBox" Grid.RowSpan="2"/>
-                        <TextBox x:Name="hebrewWordEntry" Height="22" Margin="388,37.105,248,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150" Grid.Row="1"/>
-                        <TextBox x:Name="hebrewTranslationEntry" Height="22" Margin="388,87.105,250,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148" Grid.Row="1"/>
-                        <TextBox x:Name="pronunciationEntry" Margin="388,133.105,249,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Top" HorizontalAlignment="Center" Width="149" Grid.Row="1"/>
-                        <Label x:Name="label1" Content="Reference Number" Height="24" Margin="244,90,434,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.RowSpan="2"/>
-                        <Label x:Name="label1_Copy" Content="Hebrew Word" Height="24" Margin="256,35.105,446,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
-                        <Label x:Name="label1_Copy1" Content="Hebrew Translation" Height="24" Margin="242,85.105,432,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
-                        <Label x:Name="label1_Copy2" Content="Pronunciation" Height="24" Margin="256,133.105,446,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
-                        <Label x:Name="label1_Copy3" Content="Definition" Height="24" Margin="267,173.105,457,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
-                        <TextBox x:Name="definitionEntry" Height="22" Margin="390,173.105,248,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="148" Grid.Row="1"/>
+                        <TextBox x:Name="referenceNumberEntry" Height="22" Margin="388,90,228,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="170" PreviewTextInput="NumberValidationTextBox" Grid.RowSpan="2" TextChanged="referenceNumberTextChangedEventHandler"/>
+                        <TextBox x:Name="hebrewWordEntry" Height="22" Margin="388,37,228,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="170" Grid.Row="1"/>
+                        <TextBox x:Name="hebrewTranslationEntry" Height="22" Margin="388,87,228,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="170" Grid.Row="1"/>
+                        <TextBox x:Name="pronunciationEntry" Margin="388,133,228,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Top" HorizontalAlignment="Center" Width="170" Grid.Row="1"/>
+                        <Label x:Name="label1" Content="Reference Number" Height="24" Margin="244,90,412,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.RowSpan="2" Width="130"/>
+                        <Label x:Name="label1_Copy" Content="Hebrew Word" Height="24" Margin="256,35,432,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Width="98"/>
+                        <Label x:Name="label1_Copy1" Content="Hebrew Translation" Height="24" Margin="242,85,412,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Width="132"/>
+                        <Label x:Name="label1_Copy2" Content="Pronunciation" Height="24" Margin="256,133,412,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Width="118"/>
+                        <Label x:Name="label1_Copy3" Content="Definition" Height="24" Margin="267,173,412,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Width="107"/>
+                        <TextBox x:Name="definitionEntry" Height="24" Margin="390,173,228,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="168" Grid.Row="1"/>
                         <Button x:Name="importButton" Content="Add Translation" Height="26" Margin="314,221.105,326,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Center" Width="146" RenderTransformOrigin="1.341,0.621" Click="importButton_Click" Grid.Row="1"/>
                         <TextBlock x:Name="referenceNumberEntryError" Margin="0,92,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Red" Grid.RowSpan="2" HorizontalAlignment="Right" Width="162"/>
                         <TextBlock x:Name="hebrewWordEntryError" HorizontalAlignment="Right" Margin="0,40,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
                         <TextBlock x:Name="hebrewTranslationEntryError" HorizontalAlignment="Right" Margin="0,90,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
                         <TextBlock x:Name="pronunciationEntryError" HorizontalAlignment="Right" Margin="0,133,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
                         <TextBlock x:Name="definitionEntryError" HorizontalAlignment="Right" Margin="0,173,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
+                        <Button x:Name="updateButton" Content="Update" Height="26" Margin="502,221,138,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Center" Width="146" RenderTransformOrigin="1.341,0.621" Click="updateButton_Click" Grid.Row="1" IsEnabled="False" Visibility="Hidden"/>
                     </Grid>
 
 
