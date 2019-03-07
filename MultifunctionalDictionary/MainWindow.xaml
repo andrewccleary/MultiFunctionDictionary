@@ -87,7 +87,7 @@
                         </Label>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Import" Margin="-2,0,-14,-2">
+                <TabItem Header="Import" >
                     <Grid Background="#FF711E13">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="105*"/>

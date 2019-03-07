@@ -78,6 +78,7 @@
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\SelectionHelper.cs" />
     <Compile Include="Helper\VerseHelper.cs" />
+    <Compile Include="Helper\TranslationHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

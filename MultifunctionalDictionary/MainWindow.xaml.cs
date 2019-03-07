@@ -173,36 +173,36 @@ namespace MultifunctionalDictionary
             hebrewTranslationEntryError.Text = "";
             pronunciationEntryError.Text = "";
 
-            bool flag = false;
+            bool flag = true;
             if(referenceNumberEntry.Text == "")
             {
                 Debug.WriteLine("Reference number empty");
                 referenceNumberEntryError.Text = "Reference number empty.";
-                flag = true;
+                flag = false;
             }
             if (hebrewWordEntry.Text == "")
             {
                 Debug.WriteLine("Hebrew Word empty");
                 hebrewWordEntryError.Text = "Hebrew word empty.";
-                flag = true;
+                flag = false;
             }
             if (hebrewTranslationEntry.Text == "")
             {
                 Debug.WriteLine("Hebrew Translation empty");
                 hebrewTranslationEntryError.Text = "Hebrew Translation empty.";
-                flag = true;
+                flag = false;
             }
             if (pronunciationEntry.Text == "")
             {
                 Debug.WriteLine("Pronunciation empty.");
                 pronunciationEntryError.Text = "Pronunciation empty.";
-                flag = true;
+                flag = false;
             }
             if (definitionEntry.Text == "")
             {
                 Debug.WriteLine("Definition empty.");
                 definitionEntryError.Text = "Definition empty.";
-                flag = true;
+                flag = false;
             }
 
             return flag;
@@ -213,7 +213,24 @@ namespace MultifunctionalDictionary
             bool pass = validateEntry();
             if (pass)
             {
-                //Do import to Postgress stuff
+                TranslationHelper th = new TranslationHelper(dh.GetConnection());
+
+                int referenceNumber = Convert.ToInt32(referenceNumberEntry.Text);
+                String hebrewWord = hebrewWordEntry.Text;
+                String hebrewTranslation = hebrewTranslationEntry.Text;
+                String pronunciation = pronunciationEntry.Text;
+                String definition = definitionEntry.Text;
+
+                Translation translation = new Translation(referenceNumber, hebrewWord, hebrewTranslation, pronunciation, definition);
+
+                th.insertTranslation(translation);
+
+                referenceNumberEntry.Text = "";
+                hebrewWordEntry.Text = "";
+                hebrewTranslationEntry.Text = "";
+                pronunciationEntry.Text = "";
+                definitionEntry.Text = "";
+
             }
         }
     }
