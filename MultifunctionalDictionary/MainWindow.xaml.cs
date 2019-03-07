@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MultifunctionalDictionary.Helper;
 using MultifunctionalDictionary.Models;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace MultifunctionalDictionary
 {
@@ -151,6 +153,68 @@ namespace MultifunctionalDictionary
         private void FontSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             verseBlock.FontSize = FontSlider.Value;
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            String searchTerm = homeSearchBox.Text;
+            
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+       private bool validateEntry()
+        {
+            referenceNumberEntryError.Text = "";
+            hebrewWordEntryError.Text = "";
+            hebrewTranslationEntryError.Text = "";
+            pronunciationEntryError.Text = "";
+
+            bool flag = false;
+            if(referenceNumberEntry.Text == "")
+            {
+                Debug.WriteLine("Reference number empty");
+                referenceNumberEntryError.Text = "Reference number empty.";
+                flag = true;
+            }
+            if (hebrewWordEntry.Text == "")
+            {
+                Debug.WriteLine("Hebrew Word empty");
+                hebrewWordEntryError.Text = "Hebrew word empty.";
+                flag = true;
+            }
+            if (hebrewTranslationEntry.Text == "")
+            {
+                Debug.WriteLine("Hebrew Translation empty");
+                hebrewTranslationEntryError.Text = "Hebrew Translation empty.";
+                flag = true;
+            }
+            if (pronunciationEntry.Text == "")
+            {
+                Debug.WriteLine("Pronunciation empty.");
+                pronunciationEntryError.Text = "Pronunciation empty.";
+                flag = true;
+            }
+            if (definitionEntry.Text == "")
+            {
+                Debug.WriteLine("Definition empty.");
+                definitionEntryError.Text = "Definition empty.";
+                flag = true;
+            }
+
+            return flag;
+        }
+
+        private void importButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool pass = validateEntry();
+            if (pass)
+            {
+                //Do import to Postgress stuff
+            }
         }
     }
 }
