@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MultifunctionalDictionary.Helper;
 using MultifunctionalDictionary.Models;
+using MultifunctionalDictionary.Windows;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
@@ -273,6 +274,30 @@ namespace MultifunctionalDictionary
             referenceNumberEntryError.Text = "";
             updateButton.Visibility = Visibility.Hidden;
             updateButton.IsEnabled = false;
+        }
+
+        private void ImportBibleButton_Click(object sender, RoutedEventArgs e)
+        {
+            BibleWindow subwindow = new BibleWindow();
+            subwindow.Show();
+        }
+
+        private void AddRootReferenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            RootReferenceWindow subwindow = new RootReferenceWindow();
+            subwindow.Show();
+        }
+
+        private void AddTranslationButton_Click(object sender, RoutedEventArgs e)
+        {
+            TranslationWindow subwindow = new TranslationWindow();
+            subwindow.Show();
+        }
+
+        private void AddWordMapButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            WordMapWindow subwindow = new WordMapWindow();
+            subwindow.Show();
         }
     }
 }

@@ -67,6 +67,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\BibleWindow.xaml.cs">
+      <DependentUpon>BibleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RootReferenceWindow.xaml.cs">
+      <DependentUpon>RootReferenceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TranslationWindow.xaml.cs">
+      <DependentUpon>TranslationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WordMapWindow.xaml.cs">
+      <DependentUpon>WordMapWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +95,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\BibleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RootReferenceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TranslationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WordMapWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Translation.cs" />

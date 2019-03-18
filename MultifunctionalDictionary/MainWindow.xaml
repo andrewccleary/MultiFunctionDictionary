@@ -122,6 +122,9 @@
                         <TextBlock x:Name="pronunciationEntryError" HorizontalAlignment="Right" Margin="0,133,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
                         <TextBlock x:Name="definitionEntryError" HorizontalAlignment="Right" Margin="0,173,61,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Foreground="Red" Grid.Row="1"/>
                         <Button x:Name="updateButton" Content="Update" Height="26" Margin="502,221,138,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Center" Width="146" RenderTransformOrigin="1.341,0.621" Click="updateButton_Click" Grid.Row="1" IsEnabled="False" Visibility="Hidden"/>
+                        <Button x:Name="addRootReferenceButton" Content="Add Root Reference" HorizontalAlignment="Left" Margin="59,39,0,0" Grid.Row="1" VerticalAlignment="Top" Width="121" Click="AddRootReferenceButton_Click"/>
+                        <Button x:Name="addTranslationButton" Content="Add Translation" HorizontalAlignment="Left" Margin="59,75,0,0" Grid.Row="1" VerticalAlignment="Top" Width="104" Click="AddTranslationButton_Click"/>
+                        <Button x:Name="addWordMapButton" Content="Add Word Map" HorizontalAlignment="Left" Margin="59,110,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Click="AddWordMapButton_Click_1"/>
                     </Grid>
 
 
