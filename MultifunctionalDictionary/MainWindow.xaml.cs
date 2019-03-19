@@ -276,12 +276,6 @@ namespace MultifunctionalDictionary
             updateButton.IsEnabled = false;
         }
 
-        private void ImportBibleButton_Click(object sender, RoutedEventArgs e)
-        {
-            BibleWindow subwindow = new BibleWindow();
-            subwindow.Show();
-        }
-
         private void AddRootReferenceButton_Click(object sender, RoutedEventArgs e)
         {
             RootReferenceWindow subwindow = new RootReferenceWindow();

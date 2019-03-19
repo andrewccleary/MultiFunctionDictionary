@@ -67,9 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Windows\BibleWindow.xaml.cs">
-      <DependentUpon>BibleWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Helper\RootReferenceHelper.cs" />
     <Compile Include="Windows\RootReferenceWindow.xaml.cs">
       <DependentUpon>RootReferenceWindow.xaml</DependentUpon>
     </Compile>
@@ -95,10 +93,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\BibleWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\RootReferenceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
