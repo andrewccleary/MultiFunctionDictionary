@@ -8,19 +8,25 @@
         Title="TranslationWindow" Height="450" Width="191.933"
         Icon="../bibleIcon.ico">
     <Grid>
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="64,354,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click"/>
-        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="64,389,0,0" VerticalAlignment="Top" Width="75" Click="ImportButton_Click"/>
-        <Label x:Name="label" Content="Translation" HorizontalAlignment="Left" Margin="84,17,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="refereneNumber" Content="Reference Number" HorizontalAlignment="Left" Margin="19,53,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="referenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="19,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="ReferenceNumberTextBox_TextChanged"/>
-        <Label x:Name="hebrewWord" Content="Hebrew Word" HorizontalAlignment="Left" Margin="19,122,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="hebrewWordTextBox" HorizontalAlignment="Left" Height="23" Margin="19,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HebrewWordTextBox_TextChanged"/>
-        <Label x:Name="hebrewTranslation" Content="Hebrew Translation" HorizontalAlignment="Left" Margin="19,181,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.022"/>
-        <TextBox x:Name="hebrewTranslationTextBox" HorizontalAlignment="Left" Height="23" Margin="19,207,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="HebrewTranslationTextBox_TextChanged"/>
-        <Label x:Name="pronunciation" Content="Pronunciation" HorizontalAlignment="Left" Margin="18,230,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pronunciationTextBox" HorizontalAlignment="Left" Height="23" Margin="19,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="PronunciationTextBox_TextChanged"/>
-        <Label x:Name="definitin" Content="Definition" HorizontalAlignment="Left" Margin="19,289,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="definitionTextBox" HorizontalAlignment="Left" Height="23" Margin="19,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="DefinitionTextBox_TextChanged"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="63*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FF711E13" Stroke="Black" Margin="0"/>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="52,338,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="52,363,0,0" VerticalAlignment="Top" Width="75" Click="ImportButton_Click" Grid.ColumnSpan="2"/>
+        <Label x:Name="label" Content="Translation" HorizontalAlignment="Left" Margin="32,14,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="20" Background="#FF711E13" Foreground="White" Grid.ColumnSpan="2"/>
+        <Label x:Name="refereneNumber" Content="Reference Number" HorizontalAlignment="Left" Margin="33,58,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="referenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="32,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="ReferenceNumberTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="hebrewWord" Content="Hebrew Word" HorizontalAlignment="Left" Margin="33,107,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="hebrewWordTextBox" HorizontalAlignment="Left" Height="23" Margin="32,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HebrewWordTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="hebrewTranslation" Content="Hebrew Translation" HorizontalAlignment="Left" Margin="32,166,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.022" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="hebrewTranslationTextBox" HorizontalAlignment="Left" Height="23" Margin="32,197,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextChanged="HebrewTranslationTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="pronunciation" Content="Pronunciation" HorizontalAlignment="Left" Margin="32,225,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="pronunciationTextBox" HorizontalAlignment="Left" Height="23" Margin="32,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="PronunciationTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="definitin" Content="Definition" HorizontalAlignment="Left" Margin="32,284,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="definitionTextBox" HorizontalAlignment="Left" Height="23" Margin="32,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="DefinitionTextBox_TextChanged" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
