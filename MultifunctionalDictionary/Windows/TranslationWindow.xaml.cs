@@ -22,7 +22,6 @@ namespace MultifunctionalDictionary.Windows
         public TranslationWindow()
         {
             InitializeComponent();
-            this.Title = "Import Translation";
 
             clearButton.IsEnabled = false;
         }
