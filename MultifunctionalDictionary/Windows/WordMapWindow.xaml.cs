@@ -25,6 +25,7 @@ namespace MultifunctionalDictionary.Windows
         public WordMapWindow()
         {
             InitializeComponent();
+            this.Title = "Import Word Map";
 
             bookSelector.IsEditable = true;
             bookSelector.IsReadOnly = true;

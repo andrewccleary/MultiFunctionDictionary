@@ -22,6 +22,7 @@ namespace MultifunctionalDictionary.Windows
         public RootReferenceWindow()
         {
             InitializeComponent();
+            this.Title = "Import Root Reference";
 
             clearButton.IsEnabled = false;
         }

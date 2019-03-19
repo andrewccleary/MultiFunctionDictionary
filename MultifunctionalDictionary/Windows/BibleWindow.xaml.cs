@@ -22,6 +22,7 @@ namespace MultifunctionalDictionary.Windows
         public BibleWindow()
         {
             InitializeComponent();
+            this.Title = "Add Bible Verse";
         }
     }
 }
