@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary.Windows"
         mc:Ignorable="d"
-        Title="BibleWindow" Height="450" Width="272.101">
+        Title="BibleWindow" Height="450" Width="272.101"
+        Icon="../bibleIcon.ico">
     <Grid/>
 </Window>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary.Windows"
         mc:Ignorable="d"
-        Title="WordMapWindow" Height="438.656" Width="234.286">
+        Title="WordMapWindow" Height="438.656" Width="234.286"
+        Icon="../bibleIcon.ico">
     <Grid>
         <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="14,149,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="BookSelector_SelectionChanged"/>
         <Label x:Name="label1" Content="Word Map" HorizontalAlignment="Left" Margin="79,20,0,0" VerticalAlignment="Top"/>

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary.Windows"
         mc:Ignorable="d"
-        Title="RootReferenceWindow" Height="335.798" Width="240.336">
+        Title="RootReferenceWindow" Height="335.798" Width="240.336"
+        Icon="../bibleIcon.ico">
+    
     <Grid>
         <Label x:Name="label" Content="Root Reference" HorizontalAlignment="Left" Margin="63,20,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Root Reference Number" HorizontalAlignment="Left" Margin="41,61,0,0" VerticalAlignment="Top"/>
