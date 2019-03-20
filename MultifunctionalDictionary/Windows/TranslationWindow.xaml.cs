@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MultifunctionalDictionary.Helper;
 
 namespace MultifunctionalDictionary.Windows
 {
@@ -19,9 +20,14 @@ namespace MultifunctionalDictionary.Windows
     /// </summary>
     public partial class TranslationWindow : Window
     {
+        DatabaseHelper dh;
+
         public TranslationWindow()
         {
             InitializeComponent();
+
+            dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            dh.AcquireConnection();
 
             clearButton.IsEnabled = false;
         }
@@ -62,7 +68,13 @@ namespace MultifunctionalDictionary.Windows
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
-            //Validate Fields & Push To Database
+            TranslationHelper th = new TranslationHelper(dh.GetConnection());
+            String result;
+
+            result = th.importTranslation(Convert.ToInt32(referenceNumberTextBox.Text), hebrewWordTextBox.Text, hebrewTranslationTextBox.Text, 
+                    pronunciationTextBox.Text, definitionTextBox.Text);
+
+            MessageBox.Show(result, "Database Result", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }

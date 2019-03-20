@@ -17,7 +17,20 @@ namespace MultifunctionalDictionary.Helper
         {
             this.connection = connection;
         }
+        
+        public String importTranslation(int referenceNum, String word, String translation, String pronunciation, String definition)
+        {
+            String result;
 
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT importTranslation FROM importTranslation({0},'{1}','{2}','{3}','{4}')", referenceNum, word, translation, pronunciation, definition), connection))
+            {
+                result = (String)cmd.ExecuteScalar();
+            }
+
+            return result;
+        }
+
+        #region OLD DATA ENTRY METHODS
         //Return 0 if pass
         //Return 1 if entry is already in database
         public int insertTranslation(Translation translation)
@@ -66,6 +79,7 @@ namespace MultifunctionalDictionary.Helper
 
             }
         }
+        #endregion
 
     }
 }

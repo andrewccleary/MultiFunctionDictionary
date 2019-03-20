@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MultifunctionalDictionary.Helper;
 
 namespace MultifunctionalDictionary.Windows
 {
@@ -19,10 +20,14 @@ namespace MultifunctionalDictionary.Windows
     /// </summary>
     public partial class RootReferenceWindow : Window
     {
+        DatabaseHelper dh;
+
         public RootReferenceWindow()
         {
             InitializeComponent();
-            this.Title = "Import Root Reference";
+
+            dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            dh.AcquireConnection();
 
             clearButton.IsEnabled = false;
         }
@@ -34,12 +39,6 @@ namespace MultifunctionalDictionary.Windows
             clearButton.IsEnabled = false;
         }
 
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Validate Fields & Push To Database
-            this.Close();
-        }
-
         private void RootReferenceNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             clearButton.IsEnabled = true;
@@ -48,6 +47,17 @@ namespace MultifunctionalDictionary.Windows
         private void ChildReferenceNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             clearButton.IsEnabled = true;
+        }
+
+        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            RootReferenceHelper rrh = new RootReferenceHelper(dh.GetConnection());
+            String result;
+
+            result = rrh.importRootReference(Convert.ToInt32(rootReferenceNumberTextBox.Text), Convert.ToInt32(childReferenceNumberTextBox.Text));
+
+            MessageBox.Show(result, "Database Result", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
         }
     }
 }

@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\RootReferenceHelper.cs" />
+    <Compile Include="Helper\WordMapHelper.cs" />
     <Compile Include="Windows\RootReferenceWindow.xaml.cs">
       <DependentUpon>RootReferenceWindow.xaml</DependentUpon>
     </Compile>

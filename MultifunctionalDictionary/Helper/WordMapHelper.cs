@@ -9,20 +9,20 @@ using System.Diagnostics;
 
 namespace MultifunctionalDictionary.Helper
 {
-    class RootReferenceHelper
+    class WordMapHelper
     {
         private NpgsqlConnection connection;
 
-        public RootReferenceHelper(NpgsqlConnection connection)
+        public WordMapHelper(NpgsqlConnection connection)
         {
             this.connection = connection;
         }
 
-        public String importRootReference(int rootReferenceNum, int childReferenceNum)
+        public String importWordMap(String word, String book, int chapter, int verseNum, int referenceNum)
         {
             String result;
 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT importRootReference FROM importRootReference({0},{1})", rootReferenceNum, childReferenceNum), connection))
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT importWordMap FROM importWordMap('{0}','{1}',{2},{3},{4})", word, book, chapter, verseNum, referenceNum), connection))
             {
                 result = (String)cmd.ExecuteScalar();
             }

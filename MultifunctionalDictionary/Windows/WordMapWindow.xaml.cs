@@ -25,7 +25,6 @@ namespace MultifunctionalDictionary.Windows
         public WordMapWindow()
         {
             InitializeComponent();
-            this.Title = "Import Word Map";
 
             bookSelector.IsEditable = true;
             bookSelector.IsReadOnly = true;
@@ -125,7 +124,13 @@ namespace MultifunctionalDictionary.Windows
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
-            //Validate Fields & Push To Database
+            WordMapHelper wmh = new WordMapHelper(dh.GetConnection());
+            String result;
+
+            result = wmh.importWordMap(wordTextBox.Text, bookSelector.Text, Convert.ToInt32(chapterSelector.Text), 
+                                Convert.ToInt32(verseSelector.Text), Convert.ToInt32(referenceNumberTextBox.Text));
+
+            MessageBox.Show(result, "Database Result", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }
