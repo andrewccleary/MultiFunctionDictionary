@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION getBooks () 
+ RETURNS TABLE (
+ booknum INT,
+ book VARCHAR(25)
+) 
+AS $$
+BEGIN
+ RETURN QUERY     
+ 	SELECT DISTINCT B.booknum, B.book
+	FROM BIBLE AS B
+	ORDER BY B.booknum;
+END; $$ 
+LANGUAGE 'plpgsql';
