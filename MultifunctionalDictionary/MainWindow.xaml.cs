@@ -155,10 +155,25 @@ namespace MultifunctionalDictionary
         {
             verseBlock.FontSize = FontSlider.Value;
         }
+
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            SearchHelper sh = new SearchHelper(dh.GetConnection());
             String searchTerm = homeSearchBox.Text;
-            
+            List<SearchResult> results = new List<SearchResult>();
+
+            if (bookSelector.Text != "Book" && chapterSelector.Text == "Chapter" && verseSelector.Text == "Verse")
+            {
+                results = sh.searchWordByBook(searchTerm, bookSelector.SelectedIndex + 1);
+            }
+            else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text == "Verse")
+            {
+                results = sh.searchWordByBookChapter(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1);
+            }
+            else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text != "Verse")
+            {
+                results = sh.searchWordByBookChapterVerse(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1, verseSelector.SelectedIndex + 1);
+            }
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
