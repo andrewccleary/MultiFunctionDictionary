@@ -138,6 +138,7 @@ namespace MultifunctionalDictionary
             FontSlider.IsEnabled = false;
             verseSelector.Items.Clear();
             chapterSelector.Items.Clear();
+            homeSearchBox.Clear();
 
             bookSelector.Text = "Book";
             chapterSelector.Text = "Chapter";
@@ -162,17 +163,38 @@ namespace MultifunctionalDictionary
             String searchTerm = homeSearchBox.Text;
             List<SearchResult> results = new List<SearchResult>();
 
-            if (bookSelector.Text != "Book" && chapterSelector.Text == "Chapter" && verseSelector.Text == "Verse")
+            if (searchTerm == String.Empty)
             {
-                results = sh.searchWordByBook(searchTerm, bookSelector.SelectedIndex + 1);
+                MessageBox.Show("Please enter a valid search term.", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text == "Verse")
+            else
             {
-                results = sh.searchWordByBookChapter(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1);
-            }
-            else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text != "Verse")
-            {
-                results = sh.searchWordByBookChapterVerse(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1, verseSelector.SelectedIndex + 1);
+                if (bookSelector.Text != "Book" && chapterSelector.Text == "Chapter" && verseSelector.Text == "Verse")
+                {
+                    results = sh.searchWordByBook(searchTerm, bookSelector.SelectedIndex + 1);
+                }
+                else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text == "Verse")
+                {
+                    results = sh.searchWordByBookChapter(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1);
+                }
+                else if (bookSelector.Text != "Book" && chapterSelector.Text != "Chapter" && verseSelector.Text != "Verse")
+                {
+                    results = sh.searchWordByBookChapterVerse(searchTerm, bookSelector.SelectedIndex + 1, chapterSelector.SelectedIndex + 1, verseSelector.SelectedIndex + 1);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Book, Chapter, or Verse in order to search.", "Selection Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+
+                if(results.Count != 0)
+                {
+                    searchWordTextBox.Text = results.ElementAt<SearchResult>(0).GetWord();
+                    searchReferenceNumTextBox.Text = results.ElementAt<SearchResult>(0).GetReferenceNum().ToString();
+                    searchHebrewWordTextBox.Text = results.ElementAt<SearchResult>(0).GetHebrewWord();
+                    searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(0).GetHebrewTranslation();
+                    searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(0).GetPronunciation();
+                    searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(0).GetDefinition();
+                }
             }
         }
 

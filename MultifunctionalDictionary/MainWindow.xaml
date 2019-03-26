@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary"
         mc:Ignorable="d"
-        Title="Multi-functional Dictionary" Height="450" Width="800"
+        Title="Multi-functional Dictionary" Height="742" Width="1078"
         Icon="bibleIcon.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="119*"/>
-            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="506*"/>
+            <ColumnDefinition Width="313*"/>
+            <ColumnDefinition Width="139*"/>
+            <ColumnDefinition Width="166*"/>
         </Grid.ColumnDefinitions>
-        <Grid Margin="0" Grid.ColumnSpan="2">
+        <Grid Margin="0,0,0,-0.333" Grid.ColumnSpan="4">
             <TabControl x:Name="tabControl" Margin="0" TabStripPlacement="Bottom" >
                 <TabItem Header="Home">
                     <Grid Background="#FF711E13">
@@ -61,10 +63,22 @@
                         <TextBox x:Name="homeSearchBox" HorizontalAlignment="Right" Margin="0,20,91,0" TextWrapping="Wrap" Grid.Column="1" MinWidth="140" Width="133" RenderTransformOrigin="-0.356,0.526" Height="23" VerticalAlignment="Top"/>
                         <Button x:Name="goButton" Content="Go" Grid.Column="1" HorizontalAlignment="Left" Margin="588,66,0,0" VerticalAlignment="Top" Width="75" Click="GoButton_Click" Height="20" Background="White"/>
                         <Button x:Name="clearButton" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="680,66,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Height="20" Background="White"/>
-                        <ScrollViewer Grid.ColumnSpan="2" Margin="75,111,75,54">
+                        <ScrollViewer Grid.ColumnSpan="2" Margin="39,111,310.333,53.667">
                             <TextBlock x:Name="verseBlock" Grid.ColumnSpan="2" TextWrapping="Wrap" Background="White"/>
                         </ScrollViewer>
                         <Slider x:Name="FontSlider" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="75,0,0,31" RenderTransformOrigin="3.087,0.154" Width="173" Minimum="12" Maximum="25" Height="18" VerticalAlignment="Bottom" SmallChange="1" ValueChanged="FontSlider_ValueChanged"/>
+                        <TextBox x:Name="searchWordTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <TextBox x:Name="searchReferenceNumTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <TextBox x:Name="searchHebrewWordTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <TextBox x:Name="searchHebrewTranslationTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <TextBox x:Name="searchPronunciationTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <TextBox x:Name="searchDefinitionTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="154" Margin="783,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+                        <Label x:Name="label2" Grid.ColumnSpan="2" Content="Word" HorizontalAlignment="Left" Margin="783,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.833,0.667"/>
+                        <Label x:Name="label3" Grid.ColumnSpan="2" Content="Hebrew Word" HorizontalAlignment="Left" Margin="783,183,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="label4" Grid.ColumnSpan="2" Content="Hebrew Translation" HorizontalAlignment="Left" Margin="783,233,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="label5" Grid.ColumnSpan="2" Content="Pronunciation" HorizontalAlignment="Left" Margin="783,282,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="label6" Grid.ColumnSpan="2" Content="Reference Number" HorizontalAlignment="Left" Margin="783,134,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="label7" Grid.ColumnSpan="2" Content="Definition" HorizontalAlignment="Left" Margin="783,331,0,0" VerticalAlignment="Top"/>
 
                     </Grid>
                 </TabItem>
