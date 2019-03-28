@@ -67,18 +67,18 @@
                             <TextBlock x:Name="verseBlock" Grid.ColumnSpan="2" TextWrapping="Wrap" Background="White"/>
                         </ScrollViewer>
                         <Slider x:Name="FontSlider" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="75,0,0,31" RenderTransformOrigin="3.087,0.154" Width="173" Minimum="12" Maximum="25" Height="18" VerticalAlignment="Bottom" SmallChange="1" ValueChanged="FontSlider_ValueChanged"/>
-                        <TextBox x:Name="searchWordTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <TextBox x:Name="searchReferenceNumTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <TextBox x:Name="searchHebrewWordTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <TextBox x:Name="searchHebrewTranslationTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <TextBox x:Name="searchPronunciationTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="783,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <TextBox x:Name="searchDefinitionTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="154" Margin="783,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-                        <Label x:Name="label2" Grid.ColumnSpan="2" Content="Word" HorizontalAlignment="Left" Margin="783,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.833,0.667"/>
-                        <Label x:Name="label3" Grid.ColumnSpan="2" Content="Hebrew Word" HorizontalAlignment="Left" Margin="783,183,0,0" VerticalAlignment="Top"/>
-                        <Label x:Name="label4" Grid.ColumnSpan="2" Content="Hebrew Translation" HorizontalAlignment="Left" Margin="783,233,0,0" VerticalAlignment="Top"/>
-                        <Label x:Name="label5" Grid.ColumnSpan="2" Content="Pronunciation" HorizontalAlignment="Left" Margin="783,282,0,0" VerticalAlignment="Top"/>
-                        <Label x:Name="label6" Grid.ColumnSpan="2" Content="Reference Number" HorizontalAlignment="Left" Margin="783,134,0,0" VerticalAlignment="Top"/>
-                        <Label x:Name="label7" Grid.ColumnSpan="2" Content="Definition" HorizontalAlignment="Left" Margin="783,331,0,0" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="searchWordTextBox" Grid.ColumnSpan="2" Height="23" Margin="0,111,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" Background="White"/>
+                        <TextBlock x:Name="searchReferenceNumTextBox" Grid.ColumnSpan="2" Height="23" Margin="0,160,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" Background="White"/>
+                        <TextBlock x:Name="searchHebrewWordTextBox" Grid.ColumnSpan="2" Height="23" Margin="0,210,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" Background="White"/>
+                        <TextBlock x:Name="searchHebrewTranslationTextBox" Grid.ColumnSpan="2" Height="23" Margin="0,259,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" Background="White"/>
+                        <TextBlock x:Name="searchPronunciationTextBox" Grid.ColumnSpan="2" Height="23" Margin="0,308,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" Background="White"/>
+                        <TextBlock x:Name="searchDefinitionTextBox" Grid.ColumnSpan="2" Height="154" Margin="0,357,39,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="242" OpacityMask="White" Background="White"/>
+                        <Label x:Name="label2" Grid.ColumnSpan="2" Content="Word" Margin="0,85,242,0" VerticalAlignment="Top" RenderTransformOrigin="-0.833,0.667" HorizontalAlignment="Right" Width="39"/>
+                        <Label x:Name="label3" Grid.ColumnSpan="2" Content="Hebrew Word" Margin="0,183,198,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="83"/>
+                        <Label x:Name="label4" Grid.ColumnSpan="2" Content="Hebrew Translation" Margin="0,233,170,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="111"/>
+                        <Label x:Name="label5" Grid.ColumnSpan="2" Content="Pronunciation" Margin="0,282,197,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"/>
+                        <Label x:Name="label6" Grid.ColumnSpan="2" Content="Reference Number" Margin="0,134,172,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="109"/>
+                        <Label x:Name="label7" Grid.ColumnSpan="2" Content="Definition" Margin="0,331,219,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62"/>
 
                     </Grid>
                 </TabItem>

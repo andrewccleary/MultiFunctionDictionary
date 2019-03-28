@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MultifunctionalDictionary.Helper;
+﻿using MultifunctionalDictionary.Helper;
 using MultifunctionalDictionary.Models;
 using MultifunctionalDictionary.Windows;
-using System.Text.RegularExpressions;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MultifunctionalDictionary
 {
@@ -194,6 +186,9 @@ namespace MultifunctionalDictionary
                     searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(0).GetHebrewTranslation();
                     searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(0).GetPronunciation();
                     searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(0).GetDefinition();
+                } else if (results.Count == 0)
+                {
+                    MessageBox.Show("No result found for this word.", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
