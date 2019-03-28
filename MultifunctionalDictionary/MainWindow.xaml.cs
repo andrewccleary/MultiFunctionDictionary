@@ -15,9 +15,12 @@ namespace MultifunctionalDictionary
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    
     public partial class MainWindow : Window
     {
         DatabaseHelper dh;
+        List<SearchResult> results = new List<SearchResult>();
 
         public MainWindow()
         {
@@ -40,6 +43,11 @@ namespace MultifunctionalDictionary
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
             FontSlider.IsEnabled = false;
+
+            searchContext.IsEditable = true;
+            searchContext.IsReadOnly = true;
+            searchContext.IsEnabled = false;
+            searchContext.Text = "Context";
 
             dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
             dh.AcquireConnection();
@@ -142,6 +150,8 @@ namespace MultifunctionalDictionary
             verseSelector.IsEnabled = false;
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
+
+            searchContext.IsEnabled = false;
         }
 
         private void FontSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -153,7 +163,7 @@ namespace MultifunctionalDictionary
         {
             SearchHelper sh = new SearchHelper(dh.GetConnection());
             String searchTerm = homeSearchBox.Text;
-            List<SearchResult> results = new List<SearchResult>();
+            results.Clear();
 
             if (searchTerm == String.Empty)
             {
@@ -186,6 +196,19 @@ namespace MultifunctionalDictionary
                     searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(0).GetHebrewTranslation();
                     searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(0).GetPronunciation();
                     searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(0).GetDefinition();
+
+                    searchContext.Text = "Context";
+                    searchContext.Items.Clear();
+                    searchContext.IsEnabled = true;
+
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        String context = results.ElementAt<SearchResult>(i).GetBook() + " " +
+                                           results.ElementAt<SearchResult>(i).GetChapter() + ":" +
+                                             results.ElementAt<SearchResult>(i).GetVerseNum();
+                        searchContext.Items.Insert(i, context);
+                    }
+                    
                 } else if (results.Count == 0)
                 {
                     MessageBox.Show("No result found for this word.", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -193,119 +216,22 @@ namespace MultifunctionalDictionary
             }
         }
 
+        private void searchContext_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Debug.WriteLine("Context Changed!");
+            int index = searchContext.SelectedIndex;
+            searchWordTextBox.Text = results.ElementAt<SearchResult>(index).GetWord();
+            searchReferenceNumTextBox.Text = results.ElementAt<SearchResult>(index).GetReferenceNum().ToString();
+            searchHebrewWordTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewWord();
+            searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewTranslation();
+            searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(index).GetPronunciation();
+            searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(index).GetDefinition();
+        }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-        }
-
-       private bool validateEntry()
-        {
-            referenceNumberEntryError.Text = "";
-            hebrewWordEntryError.Text = "";
-            hebrewTranslationEntryError.Text = "";
-            pronunciationEntryError.Text = "";
-
-            bool flag = true;
-            if(referenceNumberEntry.Text == "")
-            {
-                Debug.WriteLine("Reference number empty");
-                referenceNumberEntryError.Text = "Reference number empty.";
-                flag = false;
-            }
-            if (hebrewWordEntry.Text == "")
-            {
-                Debug.WriteLine("Hebrew Word empty");
-                hebrewWordEntryError.Text = "Hebrew word empty.";
-                flag = false;
-            }
-            if (hebrewTranslationEntry.Text == "")
-            {
-                Debug.WriteLine("Hebrew Translation empty");
-                hebrewTranslationEntryError.Text = "Hebrew Translation empty.";
-                flag = false;
-            }
-            if (pronunciationEntry.Text == "")
-            {
-                Debug.WriteLine("Pronunciation empty.");
-                pronunciationEntryError.Text = "Pronunciation empty.";
-                flag = false;
-            }
-            if (definitionEntry.Text == "")
-            {
-                Debug.WriteLine("Definition empty.");
-                definitionEntryError.Text = "Definition empty.";
-                flag = false;
-            }
-
-            return flag;
-        }
-
-        private void importButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool pass = validateEntry();
-            if (pass)
-            {
-                TranslationHelper th = new TranslationHelper(dh.GetConnection());
-
-                int referenceNumber = Convert.ToInt32(referenceNumberEntry.Text);
-                String hebrewWord = hebrewWordEntry.Text;
-                String hebrewTranslation = hebrewTranslationEntry.Text;
-                String pronunciation = pronunciationEntry.Text;
-                String definition = definitionEntry.Text;
-
-                Translation translation = new Translation(referenceNumber, hebrewWord, hebrewTranslation, pronunciation, definition);
-
-                int insertFlag = th.insertTranslation(translation);
-
-                //If insert succeded
-                if (insertFlag == 0)
-                {
-                    referenceNumberEntry.Text = "";
-                    hebrewWordEntry.Text = "";
-                    hebrewTranslationEntry.Text = "";
-                    pronunciationEntry.Text = "";
-                    definitionEntry.Text = "";
-                } else if(insertFlag == 1) //If duplicate entry show update button
-                {
-                    referenceNumberEntryError.Text = "Duplicate Reference Number.";
-                    updateButton.Visibility = Visibility.Visible;
-                    updateButton.IsEnabled = true;
-                }
-
-            }
-        }
-
-        private void updateButton_Click(object sender, RoutedEventArgs e)
-        {
-            TranslationHelper th = new TranslationHelper(dh.GetConnection());
-
-            int referenceNumber = Convert.ToInt32(referenceNumberEntry.Text);
-            String hebrewWord = hebrewWordEntry.Text;
-            String hebrewTranslation = hebrewTranslationEntry.Text;
-            String pronunciation = pronunciationEntry.Text;
-            String definition = definitionEntry.Text;
-
-            Translation translation = new Translation(referenceNumber, hebrewWord, hebrewTranslation, pronunciation, definition);
-            th.updateTranslation(translation);
-
-            referenceNumberEntryError.Text = "";
-            referenceNumberEntry.Text = "";
-            hebrewWordEntry.Text = "";
-            hebrewTranslationEntry.Text = "";
-            pronunciationEntry.Text = "";
-            definitionEntry.Text = "";
-
-            updateButton.Visibility = Visibility.Hidden;
-            updateButton.IsEnabled = false;
-
-        }
-
-        private void referenceNumberTextChangedEventHandler(object sender, TextChangedEventArgs args)
-        {
-            referenceNumberEntryError.Text = "";
-            updateButton.Visibility = Visibility.Hidden;
-            updateButton.IsEnabled = false;
         }
 
         private void AddRootReferenceButton_Click(object sender, RoutedEventArgs e)
