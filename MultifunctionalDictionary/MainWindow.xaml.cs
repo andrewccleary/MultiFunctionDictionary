@@ -152,6 +152,12 @@ namespace MultifunctionalDictionary
             clearButton.IsEnabled = false;
 
             searchContext.IsEnabled = false;
+            searchWordTextBox.Text = "";
+            searchReferenceNumTextBox.Text = "";
+            searchHebrewWordTextBox.Text = "";
+            searchHebrewTranslationTextBox.Text = "";
+            searchPronunciationTextBox.Text = "";
+            searchDefinitionTextBox.Text = "";
         }
 
         private void FontSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -164,6 +170,7 @@ namespace MultifunctionalDictionary
             SearchHelper sh = new SearchHelper(dh.GetConnection());
             String searchTerm = homeSearchBox.Text;
             results.Clear();
+            searchContext.Items.Clear();
 
             if (searchTerm == String.Empty)
             {
@@ -220,12 +227,17 @@ namespace MultifunctionalDictionary
         {
             Debug.WriteLine("Context Changed!");
             int index = searchContext.SelectedIndex;
-            searchWordTextBox.Text = results.ElementAt<SearchResult>(index).GetWord();
-            searchReferenceNumTextBox.Text = results.ElementAt<SearchResult>(index).GetReferenceNum().ToString();
-            searchHebrewWordTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewWord();
-            searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewTranslation();
-            searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(index).GetPronunciation();
-            searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(index).GetDefinition();
+            
+            if(index != -1)
+            {
+                searchWordTextBox.Text = results.ElementAt<SearchResult>(index).GetWord();
+                searchReferenceNumTextBox.Text = results.ElementAt<SearchResult>(index).GetReferenceNum().ToString();
+                searchHebrewWordTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewWord();
+                searchHebrewTranslationTextBox.Text = results.ElementAt<SearchResult>(index).GetHebrewTranslation();
+                searchPronunciationTextBox.Text = results.ElementAt<SearchResult>(index).GetPronunciation();
+                searchDefinitionTextBox.Text = results.ElementAt<SearchResult>(index).GetDefinition();
+            }
+            
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
