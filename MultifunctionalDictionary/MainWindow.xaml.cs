@@ -22,6 +22,7 @@ namespace MultifunctionalDictionary
         DatabaseHelper dh;
         List<SearchResult> results = new List<SearchResult>();
         List<ReferenceNumberSearchResult> referenceNumberResults = new List<ReferenceNumberSearchResult>();
+        List<WordSearchResult> WordResults = new List<WordSearchResult>();
 
         //Global variable to keep track of which advanced search radio button is selected
         //0 = none
@@ -278,6 +279,9 @@ namespace MultifunctionalDictionary
             SearchHelper sh = new SearchHelper(dh.GetConnection());
             String searchTerm = advancedSearch.Text;
             referenceNumberResults.Clear();
+            WordResults.Clear();
+            dataGrid.ItemsSource = null;
+            dataGrid.Items.Refresh();
 
             if (searchTerm == String.Empty)
             {
@@ -311,7 +315,7 @@ namespace MultifunctionalDictionary
                     
                     if (referenceNumberResults.Count != 0)
                     {
-                        Debug.WriteLine(referenceNumberResults[0].verse);
+                        //Debug.WriteLine(referenceNumberResults[0].verse);
                         dataGrid.ItemsSource = referenceNumberResults;
                         dataGrid.Items.Refresh();
                     }
@@ -322,6 +326,18 @@ namespace MultifunctionalDictionary
                     
                     break;
                 case 2:
+                    WordResults = sh.getWords(searchTerm);
+
+                    if (WordResults.Count != 0)
+                    {
+                        //Debug.WriteLine(referenceNumberResults[0].verse);
+                        dataGrid.ItemsSource = WordResults;
+                        dataGrid.Items.Refresh();
+                    }
+                    else if (WordResults.Count == 0)
+                    {
+                        MessageBox.Show("No result found for this Word.", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
 
                     break;
                 case 3:

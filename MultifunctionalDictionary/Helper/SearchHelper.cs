@@ -79,13 +79,32 @@ namespace MultifunctionalDictionary.Helper
         {
             List<ReferenceNumberSearchResult> results = new List<ReferenceNumberSearchResult>();
 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT referencenum, word, booknum, book, chapter, versenum, verse FROM getReferenceNUmbers('{0}')", referenceNumber), connection))
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT referencenum, word, booknum, book, chapter, versenum, verse FROM getReferenceNumbers('{0}')", referenceNumber), connection))
             {
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         ReferenceNumberSearchResult result = new ReferenceNumberSearchResult(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetString(6));
+                        results.Add(result);
+                    }
+
+                    return results;
+                }
+            }
+        }
+
+        public List<WordSearchResult> getWords(String searchedWord)
+        {
+            List<WordSearchResult> results = new List<WordSearchResult>();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT word, referencenum, booknum, book, chapter, versenum, verse FROM getWords('{0}')", searchedWord), connection))
+            {
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        WordSearchResult result = new WordSearchResult(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetString(6));
                         results.Add(result);
                     }
 
