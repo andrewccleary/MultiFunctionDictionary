@@ -21,6 +21,15 @@ namespace MultifunctionalDictionary
     {
         DatabaseHelper dh;
         List<SearchResult> results = new List<SearchResult>();
+        List<ReferenceNumberSearchResult> referenceNumberResults = new List<ReferenceNumberSearchResult>();
+
+        //Global variable to keep track of which advanced search radio button is selected
+        //0 = none
+        //1 = Search for Reference Number
+        //2 = Search for Word
+        //3 = Search for Word w/ Context
+
+        int advancedSearchType = 0;
 
         public MainWindow()
         {
@@ -262,6 +271,79 @@ namespace MultifunctionalDictionary
         {
             WordMapWindow subwindow = new WordMapWindow();
             subwindow.Show();
+        }
+
+        private void AdvancedSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchHelper sh = new SearchHelper(dh.GetConnection());
+            String searchTerm = advancedSearch.Text;
+            referenceNumberResults.Clear();
+
+            if (searchTerm == String.Empty)
+            {
+                MessageBox.Show("Please enter a valid search term.", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            switch (advancedSearchType)
+            {
+                case 0:
+                    MessageBox.Show("Please select an advanced search type.", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+                case 1:
+                    int searchTermInt = 0;
+                    try
+                    {
+                        searchTermInt = int.Parse(searchTerm);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Please enter a number", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    }
+
+                    if(searchTermInt <= 0)
+                    {
+                        MessageBox.Show("Please enter positive number", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    }
+
+                    referenceNumberResults = sh.getReferenceNumbers(searchTermInt);
+                    
+                    if (referenceNumberResults.Count != 0)
+                    {
+                        Debug.WriteLine(referenceNumberResults[0].GetVerse());
+                        dataGrid.Items.Add(referenceNumberResults[0].GetVerse());
+                        dataGrid.Items.Refresh();
+                    }
+                    else if (referenceNumberResults.Count == 0)
+                    {
+                        MessageBox.Show("No result found for this Reference Number.", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+            }
+            
+        }
+
+        private void referenceNumberRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            advancedSearchType = 1;
+        }
+
+        private void wordRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            advancedSearchType = 2;
+        }
+
+        private void contextRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            advancedSearchType = 3;
         }
     }
 }

@@ -74,5 +74,24 @@ namespace MultifunctionalDictionary.Helper
                 }
             }
         }
+
+        public List<ReferenceNumberSearchResult> getReferenceNumbers(int referenceNumber)
+        {
+            List<ReferenceNumberSearchResult> results = new List<ReferenceNumberSearchResult>();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT referencenum, word, booknum, book, chapter, versenum, verse FROM getReferenceNUmbers('{0}')", referenceNumber), connection))
+            {
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReferenceNumberSearchResult result = new ReferenceNumberSearchResult(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetString(6));
+                        results.Add(result);
+                    }
+
+                    return results;
+                }
+            }
+        }
     }
 }
