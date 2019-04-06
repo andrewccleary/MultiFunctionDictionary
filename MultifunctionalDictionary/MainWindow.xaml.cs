@@ -311,8 +311,8 @@ namespace MultifunctionalDictionary
                     
                     if (referenceNumberResults.Count != 0)
                     {
-                        Debug.WriteLine(referenceNumberResults[0].GetVerse());
-                        dataGrid.Items.Add(referenceNumberResults[0].GetVerse());
+                        Debug.WriteLine(referenceNumberResults[0].verse);
+                        dataGrid.ItemsSource = referenceNumberResults;
                         dataGrid.Items.Refresh();
                     }
                     else if (referenceNumberResults.Count == 0)

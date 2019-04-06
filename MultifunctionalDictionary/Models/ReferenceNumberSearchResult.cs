@@ -8,13 +8,13 @@ namespace MultifunctionalDictionary.Models
 {
     class ReferenceNumberSearchResult
     {
-        public int referenceNum;
-        public String word;
-        public int bookNum;
-        public String book;
-        public int chapter;
-        public int verseNum;
-        public String verse;
+        public int referenceNum { get; set; }
+        public String word { get; set; }
+        public int bookNum { get; set; }
+        public String book { get; set; }
+        public int chapter { get; set; }
+        public int verseNum { get; set; }
+        public String verse { get; set; }
 
         public ReferenceNumberSearchResult(int referenceNum, String word, int bookNum, String book, int chapter, int verseNum, String verse)
         {
@@ -26,14 +26,7 @@ namespace MultifunctionalDictionary.Models
             this.verseNum = verseNum;
             this.verse = verse;
         }
-
-        public String GetWord() { return this.word; }
-        public String GetBook() { return this.book; }
-        public String GetVerse() { return this.verse; }
-        public int GetChapter() { return this.chapter; }
-        public int GetVerseNum() { return this.verseNum; }
-        public int GetReferenceNum() { return this.referenceNum; }
-        public int GetBookNum() { return this.bookNum; }
+        
     }
 }
 
