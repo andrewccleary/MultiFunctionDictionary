@@ -150,5 +150,24 @@ namespace MultifunctionalDictionary.Helper
                 }
             }
         }
+
+        public List<ContextSearchResult> searchByContextWithWord(String searchTerm, int booknumber, int chapternumber, int versenumber)
+        {
+            List<ContextSearchResult> results = new List<ContextSearchResult>();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT booknum, chapter, versenum, word, referencenum, hebrewword, hebrewtranslation, pronunciation, definition, verse FROM searchByContextWithWord('{0}', '{1}', '{2}', '{3}')", searchTerm, booknumber, chapternumber, versenumber), connection))
+            {
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ContextSearchResult result = new ContextSearchResult(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
+                        results.Add(result);
+                    }
+
+                    return results;
+                }
+            }
+        }
     }
 }

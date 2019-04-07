@@ -416,9 +416,12 @@ namespace MultifunctionalDictionary
                     break;
                 case 3:
 
-                    if (bookSelector2.Text != "Book" && chapterSelector2.Text != "Chapter" && verseSelector2.Text != "Verse")
+                    if (bookSelector2.Text != "Book" && chapterSelector2.Text != "Chapter" && verseSelector2.Text != "Verse" && searchTerm.Length == 0)
                     {
                         ContextResults = sh.searchByContext(bookSelector2.SelectedIndex + 1, chapterSelector2.SelectedIndex + 1, verseSelector2.SelectedIndex + 1);
+                    } else if(bookSelector2.Text != "Book" && chapterSelector2.Text != "Chapter" && verseSelector2.Text != "Verse" && searchTerm.Length != 0)
+                    {
+                        ContextResults = sh.searchByContextWithWord(searchTerm, bookSelector2.SelectedIndex + 1, chapterSelector2.SelectedIndex + 1, verseSelector2.SelectedIndex + 1);
                     }
                     else
                     {
@@ -511,6 +514,24 @@ namespace MultifunctionalDictionary
             }
         }
 
-        
+        private void clearButton2_Click(object sender, RoutedEventArgs e)
+        {
+            advancedSearch.Text = "";
+            verseTextBlock.Text = "";
+            referenceNumberResults.Clear();
+            WordResults.Clear();
+            ContextResults.Clear();
+            dataGrid.ItemsSource = null;
+            dataGrid.Items.Refresh();
+
+            verseSelector2.Items.Clear();
+            chapterSelector2.Items.Clear();
+            bookSelector2.Text = "Book";
+            chapterSelector2.Text = "Chapter";
+            verseSelector2.Text = "Verse";
+            
+            chapterSelector2.IsEnabled = false;
+            verseSelector2.IsEnabled = false;
+        }
     }
 }
