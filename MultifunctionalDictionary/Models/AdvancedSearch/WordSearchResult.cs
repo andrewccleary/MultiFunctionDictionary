@@ -26,7 +26,8 @@ namespace MultifunctionalDictionary.Models
             this.verseNum = verseNum;
             this.verse = verse;
         }
-        
+
+                
     }
 }
 

@@ -70,8 +70,9 @@
     <Compile Include="Helper\RootReferenceHelper.cs" />
     <Compile Include="Helper\SearchHelper.cs" />
     <Compile Include="Helper\WordMapHelper.cs" />
-    <Compile Include="Models\WordSearchResult.cs" />
-    <Compile Include="Models\ReferenceNumberSearchResult.cs" />
+    <Compile Include="Models\AdvancedSearch\ContextSearchResult.cs" />
+    <Compile Include="Models\AdvancedSearch\WordSearchResult.cs" />
+    <Compile Include="Models\AdvancedSearch\ReferenceNumberSearchResult.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Windows\RootReferenceWindow.xaml.cs">
       <DependentUpon>RootReferenceWindow.xaml</DependentUpon>

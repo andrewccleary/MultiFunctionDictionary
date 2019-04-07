@@ -89,7 +89,7 @@
                         <Rectangle Grid.ColumnSpan="2" Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
                         <TextBox x:Name="advancedSearch" Margin="201,75,216,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
                         <Button x:Name="SearchButton" Content="Advanced Search" Margin="0,75,64,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" Background="White" Click="AdvancedSearchButton_Click"/>
-                        <DataGrid x:Name="dataGrid" Margin="55,188,64,64" Background="White" AutoGenerateColumns="True" />
+                        <DataGrid x:Name="dataGrid" Margin="55,243,64,33" Background="White" AutoGenerateColumns="True" />
                         <Label x:Name="label_Copy" Content="Multi-functional Dictionary" Margin="260,11,284,0" FontFamily="Old English Text MT" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="32" Width="242" Background="#FF711E13" Foreground="White">
                             <Label.RenderTransform>
                                 <TransformGroup>
@@ -100,9 +100,14 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <RadioButton x:Name="referenceNumberRadioButton" Content="Search for Reference Number" HorizontalAlignment="Left" Margin="150,134,0,0" VerticalAlignment="Top" Height="24" Width="188" Checked="referenceNumberRadioButton_Checked"/>
-                        <RadioButton x:Name="wordRadioButton" Content="Search for Word" HorizontalAlignment="Left" Margin="424,134,0,0" VerticalAlignment="Top" Height="24" Width="126" Checked="wordRadioButton_Checked"/>
-                        <RadioButton x:Name="contextRadioButton" Content="Search for Word with Context" HorizontalAlignment="Left" Margin="647,134,0,0" VerticalAlignment="Top" Height="24" Width="201" Checked="contextRadioButton_Checked"/>
+                        <RadioButton x:Name="referenceNumberRadioButton" Content="Search for Reference Number" HorizontalAlignment="Left" Margin="150,110,0,0" VerticalAlignment="Top" Height="24" Width="188" Checked="referenceNumberRadioButton_Checked"/>
+                        <RadioButton x:Name="wordRadioButton" Content="Search for Word" HorizontalAlignment="Left" Margin="424,110,0,0" VerticalAlignment="Top" Height="24" Width="126" Checked="wordRadioButton_Checked"/>
+                        <RadioButton x:Name="contextRadioButton" Content="Search for Word with Context" HorizontalAlignment="Left" Margin="647,110,0,0" VerticalAlignment="Top" Height="24" Width="201" Checked="contextRadioButton_Checked"/>
+                        <ComboBox x:Name="childReferenceComboBox" HorizontalAlignment="Left" Margin="150,139,0,0" VerticalAlignment="Top" Width="188" SelectionChanged="childReferenceComboBox_SelectionChanged"/>
+                        <ComboBox x:Name="bookSelector2" HorizontalAlignment="Left" Margin="548,139,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="bookSelector2_SelectionChanged" RenderTransformOrigin="0.488,-0.455"/>
+                        <ComboBox x:Name="chapterSelector2" HorizontalAlignment="Left" Margin="696,139,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="chapterSelector2_SelectionChanged"/>
+                        <ComboBox x:Name="verseSelector2" HorizontalAlignment="Left" Margin="850,139,0,0" VerticalAlignment="Top" Width="120" />
+                        <TextBlock x:Name="verseTextBlock" HorizontalAlignment="Left" Margin="55,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="72" Width="945"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Import" >

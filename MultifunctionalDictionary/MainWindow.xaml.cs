@@ -22,7 +22,9 @@ namespace MultifunctionalDictionary
         DatabaseHelper dh;
         List<SearchResult> results = new List<SearchResult>();
         List<ReferenceNumberSearchResult> referenceNumberResults = new List<ReferenceNumberSearchResult>();
+        List<int> children = new List<int>();
         List<WordSearchResult> WordResults = new List<WordSearchResult>();
+        List<ContextSearchResult> ContextResults = new List<ContextSearchResult>();
 
         //Global variable to keep track of which advanced search radio button is selected
         //0 = none
@@ -50,6 +52,24 @@ namespace MultifunctionalDictionary
             verseSelector.IsEnabled = false;
             verseSelector.Text = "Verse";
 
+            bookSelector2.IsEditable = true;
+            bookSelector2.IsReadOnly = true;
+            bookSelector2.Text = "Book";
+
+            chapterSelector2.IsEditable = true;
+            chapterSelector2.IsReadOnly = true;
+            chapterSelector2.IsEnabled = false;
+            chapterSelector2.Text = "Chapter";
+
+            verseSelector2.IsEditable = true;
+            verseSelector2.IsReadOnly = true;
+            verseSelector2.IsEnabled = false;
+            verseSelector2.Text = "Verse";
+
+            bookSelector2.Visibility = Visibility.Hidden;
+            chapterSelector2.Visibility = Visibility.Hidden;
+            verseSelector2.Visibility = Visibility.Hidden;
+
             goButton.IsEnabled = false;
             clearButton.IsEnabled = false;
             FontSlider.IsEnabled = false;
@@ -58,6 +78,11 @@ namespace MultifunctionalDictionary
             searchContext.IsReadOnly = true;
             searchContext.IsEnabled = false;
             searchContext.Text = "Context";
+
+            childReferenceComboBox.IsEditable = true;
+            childReferenceComboBox.IsReadOnly = true;
+            childReferenceComboBox.Text = "Related Reference Numbers";
+            childReferenceComboBox.Visibility = Visibility.Hidden;
 
             dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
             dh.AcquireConnection();
@@ -68,6 +93,7 @@ namespace MultifunctionalDictionary
             foreach(KeyValuePair<int, String> book in booksList)
             {
                 bookSelector.Items.Insert(book.Key-1, book.Value);
+                bookSelector2.Items.Insert(book.Key - 1, book.Value);
             }
 
         }
@@ -109,6 +135,41 @@ namespace MultifunctionalDictionary
             verseSelector.IsEnabled = true;
         }
 
+        private void bookSelector2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectionHelper sh = new SelectionHelper(dh.GetConnection());
+            List<int> chapters = sh.GetChapterList(bookSelector2.SelectedIndex + 1);
+
+            chapterSelector2.Items.Clear();
+
+            foreach (int chapter in chapters)
+            {
+                chapterSelector2.Items.Insert(chapter - 1, chapter);
+            }
+
+            chapterSelector2.Text = "Chapter";
+            chapterSelector2.IsEnabled = true;
+
+            verseSelector2.Text = "Verse";
+            verseSelector2.IsEnabled = false;
+        }
+
+        private void chapterSelector2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectionHelper sh = new SelectionHelper(dh.GetConnection());
+            List<int> verses = sh.GetVerseList(bookSelector2.SelectedIndex + 1, chapterSelector2.SelectedIndex + 1);
+
+            verseSelector2.Items.Clear();
+
+            foreach (int verse in verses)
+            {
+                verseSelector2.Items.Insert(verse - 1, verse);
+            }
+
+            verseSelector2.Text = "Verse";
+            verseSelector2.IsEnabled = true;
+        }
+        
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
             verseBlock.Text = " ";
@@ -280,10 +341,11 @@ namespace MultifunctionalDictionary
             String searchTerm = advancedSearch.Text;
             referenceNumberResults.Clear();
             WordResults.Clear();
+            ContextResults.Clear();
             dataGrid.ItemsSource = null;
             dataGrid.Items.Refresh();
 
-            if (searchTerm == String.Empty)
+            if (searchTerm == String.Empty && contextRadioButton.IsChecked == false)
             {
                 MessageBox.Show("Please enter a valid search term.", "Invalid Search", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -318,6 +380,18 @@ namespace MultifunctionalDictionary
                         //Debug.WriteLine(referenceNumberResults[0].verse);
                         dataGrid.ItemsSource = referenceNumberResults;
                         dataGrid.Items.Refresh();
+                        childReferenceComboBox.Visibility = Visibility.Visible;
+                        children.Clear();
+                        children = sh.getChildReferenceNumbers(searchTermInt);
+
+                        childReferenceComboBox.Items.Clear();
+                        childReferenceComboBox.Text = "Related Reference Numbers";
+                        for (int i = 0; i < children.Count; i++)
+                        {
+                            
+                            childReferenceComboBox.Items.Insert(i, children[i]);
+                        }
+
                     }
                     else if (referenceNumberResults.Count == 0)
                     {
@@ -342,6 +416,27 @@ namespace MultifunctionalDictionary
                     break;
                 case 3:
 
+                    if (bookSelector2.Text != "Book" && chapterSelector2.Text != "Chapter" && verseSelector2.Text != "Verse")
+                    {
+                        ContextResults = sh.searchByContext(bookSelector2.SelectedIndex + 1, chapterSelector2.SelectedIndex + 1, verseSelector2.SelectedIndex + 1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a Book, Chapter, and Verse in order to search.", "Selection Required", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    
+                    if (ContextResults.Count != 0)
+                    {
+                        //Debug.WriteLine(referenceNumberResults[0].verse);
+                        verseTextBlock.Text = ContextResults[0].GetVerse();
+                        dataGrid.ItemsSource = ContextResults;
+                        dataGrid.Items.Refresh();
+                    }
+                    else if (ContextResults.Count == 0)
+                    {
+                        MessageBox.Show("No result found", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                     break;
             }
             
@@ -350,16 +445,72 @@ namespace MultifunctionalDictionary
         private void referenceNumberRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             advancedSearchType = 1;
+            bookSelector2.Visibility = Visibility.Hidden;
+            chapterSelector2.Visibility = Visibility.Hidden;
+            verseSelector2.Visibility = Visibility.Hidden;
+            verseTextBlock.Text = "";
         }
 
         private void wordRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             advancedSearchType = 2;
+            childReferenceComboBox.Visibility = Visibility.Hidden;
+            bookSelector2.Visibility = Visibility.Hidden;
+            chapterSelector2.Visibility = Visibility.Hidden;
+            verseSelector2.Visibility = Visibility.Hidden;
+            verseTextBlock.Text = "";
         }
 
         private void contextRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             advancedSearchType = 3;
+            childReferenceComboBox.Visibility = Visibility.Hidden;
+            bookSelector2.Visibility = Visibility.Visible;
+            chapterSelector2.Visibility = Visibility.Visible;
+            verseSelector2.Visibility = Visibility.Visible;
         }
+
+        private void childReferenceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = childReferenceComboBox.SelectedIndex;
+            if (index != -1)
+            {
+                SearchHelper sh = new SearchHelper(dh.GetConnection());
+                
+                dataGrid.ItemsSource = null;
+                dataGrid.Items.Refresh();
+
+                Debug.WriteLine(index);
+                int child = 0;
+                child = children[index];
+
+                Debug.WriteLine(child);
+                referenceNumberResults = sh.getReferenceNumbers(child);
+
+                if (referenceNumberResults.Count != 0)
+                {
+                    //Debug.WriteLine(referenceNumberResults[0].verse);
+                    dataGrid.ItemsSource = referenceNumberResults;
+                    dataGrid.Items.Refresh();
+                    childReferenceComboBox.Visibility = Visibility.Visible;
+                    children.Clear();
+                    children = sh.getChildReferenceNumbers(child);
+                    childReferenceComboBox.Items.Clear();
+                    childReferenceComboBox.Text = "Related Reference Numbers";
+                    for (int i = 0; i < children.Count; i++)
+                    {
+                        searchContext.Items.Insert(i, children[i]);
+                    }
+
+                    
+                }
+                else if (referenceNumberResults.Count == 0)
+                {
+                    MessageBox.Show("No result found for this Reference Number.", "No Results", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        
     }
 }

@@ -112,5 +112,43 @@ namespace MultifunctionalDictionary.Helper
                 }
             }
         }
+
+        public List<int> getChildReferenceNumbers(int referenceNumber)
+        {
+            List<int> results = new List<int>();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT referencenum FROM getChildReferenceNumbers('{0}')", referenceNumber), connection))
+            {
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int result = reader.GetInt32(0);
+                        results.Add(result);
+                    }
+
+                    return results;
+                }
+            }
+        }
+
+        public List<ContextSearchResult> searchByContext(int booknumber, int chapternumber, int versenumber)
+        {
+            List<ContextSearchResult> results = new List<ContextSearchResult>();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(String.Format("SELECT booknum, chapter, versenum, word, referencenum, hebrewword, hebrewtranslation, pronunciation, definition, verse FROM searchByContext('{0}', '{1}', '{2}')", booknumber, chapternumber, versenumber), connection))
+            {
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ContextSearchResult result = new ContextSearchResult(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
+                        results.Add(result);
+                    }
+
+                    return results;
+                }
+            }
+        }
     }
 }
