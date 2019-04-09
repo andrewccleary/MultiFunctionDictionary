@@ -8,11 +8,11 @@ namespace MultifunctionalDictionary.Models
 {
     class ContextSearchResult
     {
-        private int booknum { get; set; }
+        private int booknumber { get; set; }
         private int chapter { get; set; }
-        private int versenum { get; set; }
+        private int versenumber { get; set; }
         public String word { get; set; }
-        public int referencenum { get; set; }
+        public int referencenumber { get; set; }
         public String hebrewword { get; set; }
         public String hebrewtranslation { get; set; }
         public String pronunciation { get; set; }
@@ -21,11 +21,11 @@ namespace MultifunctionalDictionary.Models
 
         public ContextSearchResult(int booknum, int chapter, int versenum, String word, int referencenum, String hebrewword, String hebrewtranslation, String pronunciation, String definition, String verse)
         {
-            this.booknum = booknum;
+            this.booknumber = booknum;
             this.chapter = chapter;
-            this.versenum = versenum;
+            this.versenumber = versenum;
             this.word = word;
-            this.referencenum = referencenum;
+            this.referencenumber = referencenum;
             this.hebrewword = hebrewword;
             this.hebrewtranslation = hebrewtranslation;
             this.pronunciation = pronunciation;

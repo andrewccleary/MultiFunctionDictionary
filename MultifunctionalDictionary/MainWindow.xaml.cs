@@ -81,7 +81,7 @@ namespace MultifunctionalDictionary
 
             childReferenceComboBox.IsEditable = true;
             childReferenceComboBox.IsReadOnly = true;
-            childReferenceComboBox.Text = "Related Reference Numbers";
+            childReferenceComboBox.Text = "Child Reference Numbers";
             childReferenceComboBox.Visibility = Visibility.Hidden;
 
             dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
@@ -385,7 +385,7 @@ namespace MultifunctionalDictionary
                         children = sh.getChildReferenceNumbers(searchTermInt);
 
                         childReferenceComboBox.Items.Clear();
-                        childReferenceComboBox.Text = "Related Reference Numbers";
+                        childReferenceComboBox.Text = "Child Reference Numbers";
                         for (int i = 0; i < children.Count; i++)
                         {
                             
@@ -499,7 +499,7 @@ namespace MultifunctionalDictionary
                     children.Clear();
                     children = sh.getChildReferenceNumbers(child);
                     childReferenceComboBox.Items.Clear();
-                    childReferenceComboBox.Text = "Related Reference Numbers";
+                    childReferenceComboBox.Text = "Child Reference Numbers";
                     for (int i = 0; i < children.Count; i++)
                     {
                         searchContext.Items.Insert(i, children[i]);
