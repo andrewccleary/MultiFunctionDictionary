@@ -5,17 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary.Windows"
         mc:Ignorable="d"
-        Title="RootReferenceWindow" Height="335.798" Width="240.336"
-        Icon="../bibleIcon.ico">
-    
+        Title="" Height="373.401" Width="228.093"
+        Icon="../bibleIcon.ico" ResizeMode="NoResize">
+
     <Grid>
-        <Label x:Name="label" Content="Root Reference" HorizontalAlignment="Left" Margin="63,20,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Root Reference Number" HorizontalAlignment="Left" Margin="41,61,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="rootReferenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="41,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="RootReferenceNumberTextBox_TextChanged"/>
-        <Label x:Name="label2" Content="Child Reference Number" HorizontalAlignment="Left" Margin="41,131,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="childReferenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="41,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="ChildReferenceNumberTextBox_TextChanged"/>
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="63,224,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click"/>
-        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="63,263,0,0" VerticalAlignment="Top" Width="75" Click="ImportButton_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FF711E13" Stroke="Black" Margin="0"/>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FFF6F4F2" Margin="16,56,16,20" Stroke="Black"/>
+        <Label x:Name="label" Content="Root Reference" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontFamily="Old English Text MT" FontSize="20" Foreground="White"/>
+        <Label x:Name="label1" Content="Root Reference Number" HorizontalAlignment="Left" Margin="43,61,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="rootReferenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="41,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" TextChanged="RootReferenceNumberTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="label2" Content="Child Reference Number" HorizontalAlignment="Left" Margin="41,131,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="childReferenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="41,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" TextChanged="ChildReferenceNumberTextBox_TextChanged" Grid.ColumnSpan="2"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="0,247,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Grid.Column="1"/>
+        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="0,283,0,0" VerticalAlignment="Top" Width="75" Click="ImportButton_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>

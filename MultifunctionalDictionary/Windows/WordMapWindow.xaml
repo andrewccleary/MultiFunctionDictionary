@@ -5,19 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultifunctionalDictionary.Windows"
         mc:Ignorable="d"
-        Title="WordMapWindow" Height="438.656" Width="234.286"
-        Icon="../bibleIcon.ico">
+        Title="" Height="470.656" Width="275.286"
+        Icon="../bibleIcon.ico" ResizeMode="NoResize">
     <Grid>
-        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="14,149,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="BookSelector_SelectionChanged"/>
-        <Label x:Name="label1" Content="Word Map" HorizontalAlignment="Left" Margin="79,20,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="wordTextBox" HorizontalAlignment="Left" Height="23" Margin="14,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" TextChanged="WordTextBox_TextChanged"/>
-        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="14,185,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="ChapterSelector_SelectionChanged"/>
-        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="12,223,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="VerseSelector_SelectionChanged"/>
-        <TextBox x:Name="referenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="9,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="ReferenceNumberTextBox_TextChanged"/>
-        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="28,366,0,0" VerticalAlignment="Top" Width="168" Click="ImportButton_Click"/>
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="70,323,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click"/>
-        <Label x:Name="label" Content="Reference Number" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Word" HorizontalAlignment="Left" Margin="14,51,0,0" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="138*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="3" Fill="#FF711E13" Stroke="Black" Margin="0"/>
+        <Rectangle Grid.ColumnSpan="3" Fill="#FFF6F4F2" Margin="16,48,16,20" Stroke="Black"/>
+        <ComboBox x:Name="bookSelector" HorizontalAlignment="Left" Margin="28,134,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="BookSelector_SelectionChanged" Grid.ColumnSpan="3"/>
+        <Label x:Name="label1" Content="Word Map" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" FontSize="20" FontFamily="Old English Text MT" Foreground="White"/>
+        <TextBox x:Name="wordTextBox" HorizontalAlignment="Left" Height="23" Margin="28,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" TextChanged="WordTextBox_TextChanged" Grid.ColumnSpan="3"/>
+        <ComboBox x:Name="chapterSelector" HorizontalAlignment="Left" Margin="28,179,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="ChapterSelector_SelectionChanged" Grid.ColumnSpan="3"/>
+        <ComboBox x:Name="verseSelector" HorizontalAlignment="Left" Margin="28,223,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="VerseSelector_SelectionChanged" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="referenceNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="28,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="ReferenceNumberTextBox_TextChanged" Grid.ColumnSpan="3"/>
+        <Button x:Name="importButton" Content="Import" HorizontalAlignment="Left" Margin="91,366,0,0" VerticalAlignment="Top" Width="75" Click="ImportButton_Click" Grid.ColumnSpan="3"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="91,324,0,0" VerticalAlignment="Top" Width="75" Click="ClearButton_Click" Grid.ColumnSpan="3"/>
+        <Label x:Name="label" Content="Reference Number" HorizontalAlignment="Left" Margin="70,250,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+        <Label x:Name="label2" Content="Word" HorizontalAlignment="Left" Margin="106,61,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>
