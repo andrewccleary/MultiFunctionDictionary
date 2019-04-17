@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
 using MultifunctionalDictionary.Helper;
 
 namespace MultifunctionalDictionary.Windows
@@ -26,7 +27,13 @@ namespace MultifunctionalDictionary.Windows
         {
             InitializeComponent();
 
-            dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+            string server = ConfigurationManager.AppSettings["server"];
+            string port = ConfigurationManager.AppSettings["port"];
+            string user = ConfigurationManager.AppSettings["user"];
+            string password = ConfigurationManager.AppSettings["password"];
+            string database = ConfigurationManager.AppSettings["database"];
+
+            dh = new DatabaseHelper(server, port, user, password, database);
             dh.AcquireConnection();
 
             clearButton.IsEnabled = false;

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MultifunctionalDictionary"
         mc:Ignorable="d"
         Title="Multi-functional Dictionary" Height="742" Width="1078"
-        Icon="bibleIcon.ico">
+        Icon="bibleIcon.ico" MinWidth="1078" MinHeight="742">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="506*"/>

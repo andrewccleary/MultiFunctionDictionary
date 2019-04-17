@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Configuration;
 
 namespace MultifunctionalDictionary
 {
@@ -84,7 +85,14 @@ namespace MultifunctionalDictionary
             childReferenceComboBox.Text = "Child Reference Numbers";
             childReferenceComboBox.Visibility = Visibility.Hidden;
 
-            dh = new DatabaseHelper("localhost", "5432", "postgres", "postgres", "MFD");
+
+            string server = ConfigurationManager.AppSettings["server"];
+            string port = ConfigurationManager.AppSettings["port"];
+            string user = ConfigurationManager.AppSettings["user"];
+            string password = ConfigurationManager.AppSettings["password"];
+            string database = ConfigurationManager.AppSettings["database"];
+
+            dh = new DatabaseHelper(server, port, user, password, database);
             dh.AcquireConnection();
             SelectionHelper sh = new SelectionHelper(dh.GetConnection());
 
